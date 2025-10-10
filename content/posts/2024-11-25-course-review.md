@@ -1,12 +1,11 @@
 ---
 title: "Course Review"
 date: 2024-11-25
-last_modified_at: 2025-05-07
-permalink: /posts/2024/11/course-review/
+last_modified_at: 2025-10-11
+permalink: /posts/course-review
 excerpt_separator: <!--more-->
-toc: true
-tags:
-  - Course Review
+category: Course Review
+tags: [Course Review, CUHK]
 ---
 
 Well, I’ve got another idea for posting... something?<!--more-->
@@ -43,7 +42,7 @@ My memories of the courses I've taken this term are a bit vague, so I’m not ab
 
 |   Course  |   Category    |   Credit  |
 |   :---:   |   :------:    |   :----:  |
-| [IERG2080 - Introduction to Systems Programming](/posts/cuhk-course-review/2024/11/IERG2080/) | Free Elective | 3 |
+| [IERG2080 - Introduction to Systems Programming](/posts/cuhk-course-review/IERG2080) | Free Elective | 3 |
 
 (*) substitute for ENGG2020
 
@@ -51,16 +50,15 @@ My memories of the courses I've taken this term are a bit vague, so I’m not ab
 
 |   Course  |   Category    |   Credit  |
 |   :---:   |   :------:    |   :----:  |
-| [CHEM1380 - Basic Chemistry for Engineers](/posts/cuhk-course-review/2024/12/CHEM1380/) | Foundation Course | 3 |
-| [ENGG2760 - Probability for Engineers](/posts/cuhk-course-review/2024/12/ENGG2760/) | Foundation Course | 3 |
-| [CSCI1130 - Intro to Computing Using Java](/posts/cuhk-course-review/2024/12/CSCI1130/) | Foundation Course | 3 |
-| [UGFH1000 - In Dialogue with Humanity](/posts/cuhk-course-review/2024/12/UGFH1000/) | University Core | 3 |
+| [CHEM1380 - Basic Chemistry for Engineers](/posts/cuhk-course-review/CHEM1380) | Foundation Course | 3 |
+| [ENGG2760 - Probability for Engineers](/posts/cuhk-course-review/ENGG2760) | Foundation Course | 3 |
+| [CSCI1130 - Intro to Computing Using Java](/posts/cuhk-course-review/CSCI1130) | Foundation Course | 3 |
+| [UGFH1000 - In Dialogue with Humanity](/posts/cuhk-course-review/UGFH1000) | University Core | 3 |
 
 ## Year 2 Spring
 
 |   Course  |   Category    |   Credit  |
 |   :---:   |   :------:    |   :----:  |
-| [ENGG2780 - Statistics for Engineers](/posts/cuhk-course-review/2025/05/ENGG2780/) | Foundation Course | 2 |
-| [ELTU2014 - English for Engineering Students I](/posts/cuhk-course-review/2025/05/ELTU2014/) | University Core | 3 |
-| [CENG3420 - Computer Organization & Design](/posts/cuhk-course-review/2025/05/CENG3420/) | Major Required | 3 |
-| [CSCI2100 - Data Structures](/posts/cuhk-course-review/2025/05/CSCI2100/) | Major Required | 3 |
+| [ENGG2780 - Statistics for Engineers](/posts/cuhk-course-review/ENGG2780) | Foundation Course | 2 |
+| [CENG3420 - Computer Organization & Design](/posts/cuhk-course-review/CENG3420) | Major Required | 3 |
+| [CSCI2100 - Data Structures](/posts/cuhk-course-review/CSCI2100) | Major Required | 3 |

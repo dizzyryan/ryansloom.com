@@ -1,0 +1,32 @@
+{
+  "name": "personal-blog",
+  "version": "1.0.0",
+  "description": "Custom static blog generator with markdown support",
+  "main": "build.js",
+  "scripts": {
+    "build": "node build.js",
+    "dev": "npm run build && npx http-server dist -p 8000 -c-1",
+    "watch": "node watch.js",
+    "start": "npm run watch & npx http-server dist -p 8000 -c-1 -o",
+    "new-post": "node scripts/new-post.js",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "blog",
+    "static-site",
+    "markdown"
+  ],
+  "author": "Ryan Chan",
+  "license": "MIT",
+  "dependencies": {
+    "front-matter": "^4.0.2",
+    "marked": "^11.1.1",
+    "fs-extra": "^11.2.0",
+    "glob": "^10.3.10",
+    "highlight.js": "^11.9.0"
+  },
+  "devDependencies": {
+    "chokidar": "^3.5.3",
+    "live-server": "^1.2.2"
+  }
+}

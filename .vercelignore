@@ -1,0 +1,38 @@
+# Development files
+draft/
+.vscode/
+.idea/
+
+# Documentation
+README.md
+CHANGELOG.md
+QUICKSTART.md
+STRUCTURE.md
+
+# Build artifacts (will be rebuilt on Vercel)
+dist/
+
+# Scripts
+watch.js
+scripts/
+
+# Git
+.git/
+.gitignore
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor files
+*.swp
+*.swo
+*~

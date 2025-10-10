@@ -1,0 +1,89 @@
+/* 
+Copyright 2025 Ryan Chan
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+body {
+  font-family: Arial;
+  margin: 30px 30px;
+}
+
+.heading-name {
+  padding-left: 30px;
+}
+
+.input-name {
+  width: auto;
+  height: 300px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #f8f8f8;
+  font-size: 16px;
+}
+
+.display-input-menu {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  grid-column-gap: 20px;
+  align-items: center;
+  padding: 20px;
+}
+
+.menu-right-section {
+  display: grid;
+  grid-template-rows: 50px 50px;
+  grid-row-gap: 30px;
+  justify-content: center;
+}
+
+.no-of-ppl,
+.start-button {
+  padding-left: 50px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-right: 50px;
+}
+
+.no-of-ppl {
+  padding-left: 15px;
+  font-size: 15px;
+  border-radius: 10px;
+  border: 2px solid;
+}
+
+.start-button {
+  background-color: rgb(52, 154, 255);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.start-button:hover {
+  transition: 0.15s;
+  opacity: 0.7;
+}
+
+.start-button:active {
+  opacity: 0.5;
+}
+
+.name-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 10px;
+  margin-top: 30px;
+}
+
+.group-block {
+  background-color: lightgray;
+  padding: 10px;
+}
