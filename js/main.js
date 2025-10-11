@@ -264,4 +264,150 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const articleMeta = document.querySelector('.article-meta');
     }
+    
+    // Search functionality
+    const searchToggle = document.querySelector('.search-toggle');
+    const searchModal = document.getElementById('searchModal');
+    const searchInput = document.getElementById('searchInput');
+    const searchClose = document.getElementById('searchClose');
+    const searchResults = document.getElementById('searchResults');
+    let searchIndex = null;
+    
+    // Load search index
+    async function loadSearchIndex() {
+        if (searchIndex) return searchIndex;
+        
+        try {
+            const response = await fetch('/search-index.json');
+            searchIndex = await response.json();
+            return searchIndex;
+        } catch (error) {
+            console.error('Failed to load search index:', error);
+            return [];
+        }
+    }
+    
+    // Perform search
+    function performSearch(query) {
+        if (!searchIndex || query.length < 2) {
+            searchResults.innerHTML = '<div class="search-hint">Type at least 2 characters to search...</div>';
+            return;
+        }
+        
+        const lowerQuery = query.toLowerCase();
+        const results = searchIndex.filter(item => {
+            const titleMatch = item.title.toLowerCase().includes(lowerQuery);
+            const excerptMatch = item.excerpt.toLowerCase().includes(lowerQuery);
+            const contentMatch = item.content.toLowerCase().includes(lowerQuery);
+            const categoryMatch = item.category.toLowerCase().includes(lowerQuery);
+            const tagsMatch = item.tags.some(tag => tag.toLowerCase().includes(lowerQuery));
+            
+            return titleMatch || excerptMatch || contentMatch || categoryMatch || tagsMatch;
+        });
+        
+        displayResults(results, query);
+    }
+    
+    // Display search results
+    function displayResults(results, query) {
+        if (results.length === 0) {
+            searchResults.innerHTML = '<div class="search-no-results">No results found for "' + query + '"</div>';
+            return;
+        }
+        
+        const resultsHtml = results.map(result => {
+            // Highlight matching text in title
+            const titleHighlighted = highlightText(result.title, query);
+            const excerptHighlighted = highlightText(result.excerpt, query);
+            
+            return `
+                <a href="${result.url}" class="search-result-item">
+                    <div class="search-result-header">
+                        <h3 class="search-result-title">${titleHighlighted}</h3>
+                        <span class="search-result-category">${result.category}</span>
+                    </div>
+                    <p class="search-result-excerpt">${excerptHighlighted}</p>
+                    ${result.tags.length > 0 ? `<div class="search-result-tags">${result.tags.map(tag => `<span class="search-tag">${tag}</span>`).join('')}</div>` : ''}
+                </a>
+            `;
+        }).join('');
+        
+        searchResults.innerHTML = `
+            <div class="search-results-count">${results.length} result${results.length !== 1 ? 's' : ''} found</div>
+            ${resultsHtml}
+        `;
+    }
+    
+    // Highlight matching text
+    function highlightText(text, query) {
+        if (!text) return '';
+        const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
+        return text.replace(regex, '<mark>$1</mark>');
+    }
+    
+    // Escape regex special characters
+    function escapeRegex(string) {
+        return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+    
+    // Open search modal
+    if (searchToggle) {
+        searchToggle.addEventListener('click', async function() {
+            searchModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            searchInput.focus();
+            
+            // Load search index if not already loaded
+            await loadSearchIndex();
+        });
+    }
+    
+    // Close search modal
+    function closeSearch() {
+        searchModal.classList.remove('active');
+        document.body.style.overflow = '';
+        searchInput.value = '';
+        searchResults.innerHTML = '<div class="search-hint">Start typing to search...</div>';
+    }
+    
+    if (searchClose) {
+        searchClose.addEventListener('click', closeSearch);
+    }
+    
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && searchModal.classList.contains('active')) {
+            closeSearch();
+        }
+        
+        // Open search with Cmd/Ctrl + K
+        if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+            e.preventDefault();
+            if (searchToggle) {
+                searchToggle.click();
+            }
+        }
+    });
+    
+    // Close when clicking outside
+    if (searchModal) {
+        searchModal.addEventListener('click', function(e) {
+            if (e.target === searchModal) {
+                closeSearch();
+            }
+        });
+    }
+    
+    // Search input handler with debounce
+    let searchTimeout;
+    if (searchInput) {
+        searchInput.addEventListener('input', function(e) {
+            clearTimeout(searchTimeout);
+            const query = e.target.value.trim();
+            
+            searchTimeout = setTimeout(() => {
+                performSearch(query);
+            }, 300);
+        });
+    }
 });

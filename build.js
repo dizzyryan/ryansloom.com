@@ -291,6 +291,46 @@ function generateTagArchiveHtml(posts) {
     return html;
 }
 
+// Generate search index
+function generateSearchIndex(posts, projects) {
+    const searchData = [];
+    
+    // Add posts to search index
+    posts.forEach(post => {
+        // Strip HTML tags from content for search
+        const plainContent = post.content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+        
+        searchData.push({
+            title: post.title,
+            excerpt: post.excerpt || post.description || '',
+            content: plainContent.substring(0, 500), // Limit content length
+            url: post.permalink,
+            category: post.category || 'Blog',
+            tags: post.tags || [],
+            date: post.last_modified_at || post.date,
+            type: 'post'
+        });
+    });
+    
+    // Add projects to search index
+    projects.forEach(project => {
+        const plainContent = project.content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
+        
+        searchData.push({
+            title: project.title,
+            excerpt: project.excerpt || project.description || '',
+            content: plainContent.substring(0, 500),
+            url: project.permalink,
+            category: 'Project',
+            tags: project.tags || [],
+            date: project.date || '',
+            type: 'project'
+        });
+    });
+    
+    return searchData;
+}
+
 // Generate sitemap.xml
 function generateSitemap(posts, pages, baseUrl = 'https://www.ryanc.wtf') {
     const currentDate = new Date().toISOString().split('T')[0];
@@ -633,6 +673,11 @@ async function build() {
     const sitemapXml = generateSitemap(allPosts, pages);
     await fs.writeFile(path.join(DIST_DIR, 'sitemap.xml'), sitemapXml);
     console.log('✓ Generated sitemap.xml');
+    
+    // Generate search index (all posts including hidden)
+    const searchIndex = generateSearchIndex(allPosts, projects);
+    await fs.writeFile(path.join(DIST_DIR, 'search-index.json'), JSON.stringify(searchIndex));
+    console.log('✓ Generated search-index.json');
     
     console.log('\n✨ Build complete! Output in dist/\n');
 }
