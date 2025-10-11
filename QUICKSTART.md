@@ -49,12 +49,16 @@ title: "Your Post Title"
 date: 2025-10-10
 category: Development
 tags: [JavaScript, Web Development]
-excerpt: "A brief description for SEO and previews"
-permalink: /posts/your-post-title.html
+excerpt_separator: <!--more-->
+permalink: /posts/your-post-title
+last_modified_at: 2025-10-10
+hidden: false
 ---
 
 Your content starts here...
 ```
+
+**Subfolders:** Posts in subfolders (like `cuhk-course-review/`) automatically get the subfolder name as their category.
 
 ### Markdown Features
 
@@ -160,8 +164,22 @@ Edit files in `templates/`:
 - `home.html` - Home page layout
 - `blog.html` - Blog listing page
 - `post.html` - Individual post layout
+- `page.html` - Static pages
+- `project.html` - Project showcase
 
-Use `{{placeholders}}` for dynamic content.
+Use `{{placeholders}}` for dynamic content:
+- `{{title}}` - Page/post title
+- `{{description}}` - Meta description
+- `{{keywords}}` - Meta keywords
+- `{{category}}` - Post category
+- `{{date}}` - Formatted date
+- `{{datetime}}` - ISO date format
+- `{{content}}` - Main content (HTML)
+- `{{readingTime}}` - Estimated reading time
+- `{{featuredPosts}}` - Featured posts (home page)
+- `{{recentPosts}}` - Recent posts (home page)
+- `{{posts}}` - All posts (blog page)
+
 
 ### Update Site Info
 
@@ -170,6 +188,31 @@ Use `{{placeholders}}` for dynamic content.
 3. Change site name in navigation
 
 ---
+
+## 🎯 Features
+
+### ✅ Implemented
+
+- ✅ Markdown to HTML conversion
+- ✅ YAML front matter support
+- ✅ Multiple content types (posts, pages, projects)
+- ✅ Subfolder categories
+- ✅ Syntax highlighting
+- ✅ Reading time calculation
+- ✅ Floating table of contents
+- ✅ Auto-rebuild on file changes
+- ✅ Live reload
+- ✅ SEO optimization
+- ✅ Responsive design
+
+### 🔜 Coming Soon
+
+- ⏳ Draft posts support
+- ⏳ Tag/category archive pages
+- ⏳ Pagination
+- ⏳ Search functionality
+- ⏳ RSS feed
+- ⏳ Related posts
 
 ## 🚢 Deployment
 
@@ -220,6 +263,16 @@ vercel --prod
 - Ensure CSS files are in `css/` directory
 - Clear browser cache
 
+**Content not showing?**
+- Check file is in correct directory (`content/posts/`, `content/pages/`, etc.)
+- Verify filename format for posts: `YYYY-MM-DD-title.md`
+- Ensure front matter is valid YAML
+- Run `npm run build` and check for errors
+
+**Images/files not loading?**
+- Place files in `images/` or `files/` directory
+- Reference with relative paths: `/images/photo.jpg` or `/files/document.pdf`
+- Rebuild after adding new files
 ---
 
 ## 📚 Learn More

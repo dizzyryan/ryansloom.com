@@ -13,16 +13,6 @@
 - Syntax highlighting for code blocks using highlight.js
 - Jekyll-like workflow without Jekyll dependency
 
-**🎨 Floating Table of Contents**
-- Fixed position TOC on the right side of article pages
-- Auto-generated from H2 and H3 headings
-- Smooth scroll to sections
-- Active section highlighting while scrolling
-- Auto-hides on small screens (< 1280px)
-- Appears after scrolling past article header
-- Nested indentation for H3 headings
-- Hover effects and active state styling
-
 **🚀 Build System**
 - `npm run build` - Build static site to `dist/`
 - `npm run dev` - Build and start local server
@@ -45,7 +35,7 @@
 #### Project Structure
 
 ```
-windsurf-project/
+ryanc.wtf/
 ├── content/posts/          # Markdown blog posts
 ├── templates/              # HTML templates
 ├── css/                    # Stylesheets

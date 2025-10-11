@@ -1,7 +1,7 @@
 {
-  "name": "personal-blog",
+  "name": "ryanc.wtf",
   "version": "1.0.0",
-  "description": "Custom static blog generator with markdown support",
+  "description": "Personal blog with markdown support",
   "main": "build.js",
   "scripts": {
     "build": "node build.js",
