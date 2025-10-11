@@ -10,7 +10,6 @@ permalink: /sitemap
 
 - [Home](/)
 - [Post](/post)
-- [About](/about)
 - [Projects](/project)
 
 ## Archives

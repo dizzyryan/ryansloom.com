@@ -50,7 +50,6 @@ const watcher = chokidar.watch([
     'templates/**/*.html',
     'css/**/*.css',
     'js/**/*.js',
-    'about.html',
     'build.js'
 ], {
     ignored: /(^|[\/\\])\../,

@@ -470,13 +470,8 @@ function renderProjectsPage(projects, template) {
     return template.replace('{{projects}}', projectsHtml);
 }
 
-// Render about page
-function renderAboutPage(template) {
-    return template;
-}
-
-// Render home page
-function renderHomePage(posts, template) {
+// Render about page with posts (now used as homepage)
+function renderAboutHomePage(posts, template) {
     const featuredPosts = posts.slice(0, 3);
     const recentPosts = posts.slice(0, 6);
     
@@ -567,7 +562,6 @@ async function build() {
     const projectTemplate = loadTemplate('project') || postTemplate;
     const blogTemplate = loadTemplate('blog');
     const projectsTemplate = loadTemplate('projects');
-    const homeTemplate = loadTemplate('home');
     const aboutTemplate = loadTemplate('about');
     console.log('✓ Loaded templates');
     
@@ -654,17 +648,9 @@ async function build() {
         console.log('✓ Generated /project.html');
     }
     
-    // Generate about page
+    // Generate homepage using about template with posts (only visible posts)
     if (aboutTemplate) {
-        const aboutHtml = renderAboutPage(aboutTemplate);
-        const aboutOutput = path.join(DIST_DIR, 'about.html');
-        await fs.writeFile(aboutOutput, aboutHtml);
-        console.log('✓ Generated /about.html');
-    }
-    
-    // Generate home page (only visible posts)
-    if (homeTemplate) {
-        const homeHtml = renderHomePage(visiblePosts, homeTemplate);
+        const homeHtml = renderAboutHomePage(visiblePosts, aboutTemplate);
         await fs.writeFile(path.join(DIST_DIR, 'index.html'), homeHtml);
         console.log('✓ Generated index.html');
     }
