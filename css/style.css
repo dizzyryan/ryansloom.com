@@ -8,7 +8,7 @@
 }
 
 :root {
-    /* Colors */
+    /* Light Mode Colors */
     --primary-color: #3b82f6;
     --primary-dark: #2563eb;
     --text-primary: #1a202c;
@@ -47,6 +47,23 @@
     --transition-slow: 350ms ease-in-out;
 }
 
+/* Dark Mode Colors */
+[data-theme="dark"] {
+    --primary-color: #60a5fa;
+    --primary-dark: #3b82f6;
+    --text-primary: #f7fafc;
+    --text-secondary: #cbd5e0;
+    --text-light: #a0aec0;
+    --bg-primary: #1a202c;
+    --bg-secondary: #2d3748;
+    --bg-tertiary: #4a5568;
+    --border-color: #4a5568;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.3);
+    --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px; /* Offset for fixed header */
@@ -62,6 +79,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
     display: flex;
     min-height: 100vh;
+    transition: background-color var(--transition-base), color var(--transition-base);
 }
 
 .page-wrapper {
@@ -558,12 +576,17 @@ main {
 }
 
 .article-content pre {
-    background-color: var(--text-primary);
+    background-color: #282c34;
     color: #f8f8f2;
     padding: var(--spacing-md);
     border-radius: var(--radius-md);
     overflow-x: auto;
     margin-bottom: var(--spacing-md);
+}
+
+[data-theme="dark"] .article-content pre {
+    background-color: #1e1e1e;
+    border: 1px solid var(--border-color);
 }
 
 .article-content pre code {
@@ -1234,6 +1257,47 @@ th[style*="text-align: center"], td[style*="text-align: center"] {
 
 .search-toggle svg {
     stroke-width: 2;
+}
+
+/* Dark mode toggle button */
+.theme-toggle {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-fast);
+    font-weight: 500;
+}
+
+.theme-toggle:hover {
+    background-color: var(--bg-secondary);
+    color: var(--primary-color);
+}
+
+.theme-toggle svg {
+    stroke-width: 2;
+}
+
+/* Hide/show sun/moon icons based on theme */
+.theme-toggle .sun-icon {
+    display: none;
+}
+
+.theme-toggle .moon-icon {
+    display: block;
+}
+
+[data-theme="dark"] .theme-toggle .sun-icon {
+    display: block;
+}
+
+[data-theme="dark"] .theme-toggle .moon-icon {
+    display: none;
 }
 
 /* Search modal */
