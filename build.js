@@ -332,7 +332,7 @@ function generateSearchIndex(posts, projects) {
 }
 
 // Generate sitemap.xml
-function generateSitemap(posts, pages, baseUrl = 'https://www.ryanc.wtf') {
+function generateSitemap(posts, pages, baseUrl = 'https://www.ryansloom.com') {
     const currentDate = new Date().toISOString().split('T')[0];
     
     let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';

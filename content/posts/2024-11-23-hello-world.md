@@ -15,6 +15,6 @@ This was originally forked (then detached) from the [Minimal Mistakes Jekyll the
 
 Thanks to AI, I can now generate the whole website with ease 🎉. This might not be the best way to go about it, but it's definitely a lot of fun 😎.  
 
-You can find the source code [here](https://github.com/dizzyryan/ryanc.wtf). If you find any issues, feel free to AI it, since I used AI to generate most of the site — and I believe you’ll figure it out if you want to make your own web…  
+You can find the source code [here](https://github.com/dizzyryan/ryansloom.com). If you find any issues, feel free to AI it, since I used AI to generate most of the site — and I believe you’ll figure it out if you want to make your own web…  
 
 Nothing else to say for now. Let me wrap it up here.
