@@ -21,7 +21,7 @@ marked.setOptions({
     sanitize: false
 });
 
-// Custom renderer for notice blocks
+// Custom renderer for notice blocks and table wrapping
 const renderer = new marked.Renderer();
 const originalParagraph = renderer.paragraph;
 renderer.paragraph = function(text) {
@@ -31,6 +31,12 @@ renderer.paragraph = function(text) {
         return `<div class="notice">${content}</div>\n`;
     }
     return originalParagraph.call(this, text);
+};
+
+const originalTable = renderer.table;
+renderer.table = function(header, body) {
+    const table = originalTable.call(this, header, body);
+    return `<div class="table-wrapper">${table}</div>\n`;
 };
 
 marked.setOptions({ renderer });
