@@ -121,25 +121,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const codeBlocks = document.querySelectorAll('pre code');
     codeBlocks.forEach(codeBlock => {
         const pre = codeBlock.parentElement;
+        
+        // Wrap pre in a container so the button stays fixed in the corner
+        const wrapper = document.createElement('div');
+        wrapper.className = 'code-block-wrapper';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+        
         const button = document.createElement('button');
         button.className = 'copy-code-button';
         button.textContent = 'Copy';
-        button.style.cssText = `
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            padding: 4px 12px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: background-color 0.2s;
-        `;
-        
-        pre.style.position = 'relative';
-        pre.appendChild(button);
+        wrapper.appendChild(button);
         
         button.addEventListener('click', async function() {
             const code = codeBlock.textContent;
@@ -152,14 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
             } catch (err) {
                 console.error('Failed to copy code:', err);
             }
-        });
-        
-        button.addEventListener('mouseenter', function() {
-            button.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-        });
-        
-        button.addEventListener('mouseleave', function() {
-            button.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
         });
     });
     

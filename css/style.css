@@ -591,6 +591,34 @@ main {
     color: var(--primary-color);
 }
 
+.code-block-wrapper {
+    position: relative;
+    margin-bottom: var(--spacing-md);
+}
+
+.code-block-wrapper pre {
+    margin-bottom: 0;
+}
+
+.copy-code-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 4px 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: background-color 0.2s;
+    z-index: 1;
+}
+
+.copy-code-button:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
 .article-content pre {
     background-color: #282c34;
     color: #f8f8f2;
