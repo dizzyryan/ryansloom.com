@@ -7,7 +7,7 @@ permalink: /posts/hello-world
 excerpt_separator: <!--more-->
 ---
 
-This is my first personal (academic) webpage.<!--more--> As a CS student, I feel that I should have my own personal site — for academic use as well as for future employment.  
+This is my personal (academic) webpage.<!--more--> As a CS student, I feel that I should have my own personal site — for academic use as well as for future employment.  
 
 The main function of this page is to showcase my work on GitHub, since it isn't exactly PDF-friendly 😅. 
 
