@@ -6,13 +6,6 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
-    { "source": "/sitemap.xml", "destination": "/sitemap.xml" },
-    { "source": "/robots.txt", "destination": "/robots.txt" },
-    { "source": "/search-index.json", "destination": "/search-index.json" },
-    { "source": "/files/:path*", "destination": "/files/:path*" },
-    { "source": "/css/:path*", "destination": "/css/:path*" },
-    { "source": "/js/:path*", "destination": "/js/:path*" },
-    { "source": "/images/:path*", "destination": "/images/:path*" },
-    { "source": "/:path*", "destination": "/:path*.html" }
+    { "source": "/(.*)", "destination": "/$1.html" }
   ]
 }
