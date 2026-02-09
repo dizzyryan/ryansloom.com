@@ -338,7 +338,7 @@ function generateSearchIndex(posts, projects) {
 }
 
 // Generate sitemap.xml
-function generateSitemap(posts, pages, baseUrl = 'https://www.ryansloom.com') {
+function generateSitemap(posts, pages, projects, staticFiles, baseUrl = 'https://www.ryansloom.com') {
     const currentDate = new Date().toISOString().split('T')[0];
     
     let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
@@ -394,6 +394,26 @@ function generateSitemap(posts, pages, baseUrl = 'https://www.ryansloom.com') {
             xml += '        <priority>0.6</priority>\n';
             xml += '    </url>\n';
         }
+    });
+    
+    // Add projects
+    projects.forEach(project => {
+        xml += '    <url>\n';
+        xml += `        <loc>${baseUrl}/projects/${project.slug}</loc>\n`;
+        xml += `        <lastmod>${currentDate}</lastmod>\n`;
+        xml += '        <changefreq>monthly</changefreq>\n';
+        xml += '        <priority>0.7</priority>\n';
+        xml += '    </url>\n';
+    });
+    
+    // Add static files (PDFs, etc.)
+    staticFiles.forEach(filePath => {
+        xml += '    <url>\n';
+        xml += `        <loc>${baseUrl}/${filePath}</loc>\n`;
+        xml += `        <lastmod>${currentDate}</lastmod>\n`;
+        xml += '        <changefreq>yearly</changefreq>\n';
+        xml += '        <priority>0.4</priority>\n';
+        xml += '    </url>\n';
     });
     
     xml += '</urlset>\n';
@@ -661,8 +681,26 @@ async function build() {
         console.log('✓ Generated index.html');
     }
     
-    // Generate sitemap.xml (all posts including hidden)
-    const sitemapXml = generateSitemap(allPosts, pages);
+    // Collect static files from files/ directory for sitemap
+    const staticFiles = [];
+    if (await fs.pathExists('files')) {
+        const collectFiles = async (dir, base) => {
+            const entries = await fs.readdir(dir, { withFileTypes: true });
+            for (const entry of entries) {
+                const fullPath = path.join(dir, entry.name);
+                const relativePath = path.join(base, entry.name);
+                if (entry.isDirectory()) {
+                    await collectFiles(fullPath, relativePath);
+                } else {
+                    staticFiles.push(relativePath);
+                }
+            }
+        };
+        await collectFiles('files', 'files');
+    }
+    
+    // Generate sitemap.xml (all posts including hidden, projects, and static files)
+    const sitemapXml = generateSitemap(allPosts, pages, projects, staticFiles);
     await fs.writeFile(path.join(DIST_DIR, 'sitemap.xml'), sitemapXml);
     console.log('✓ Generated sitemap.xml');
     
